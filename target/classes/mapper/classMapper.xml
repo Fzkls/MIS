@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.stu.dao.ClassDao">
+	
+	<resultMap id="ClassResultMap" type="com.stu.pojo.ClassPojo">
+
+        <result column="CNo" property="cno"/>
+
+        <result column="CN" property="cn"/>
+
+        <result column="Teacher" property="teacher"/>
+
+    </resultMap>
+	
+	<select id="selectAllClass" resultMap="ClassResultMap">
+		select * from class;
+	</select>
+	
+	<insert id="insertClass">
+		insert into class value(#{cno},#{cn},#{teacher});
+	</insert>
+	
+	<update id="updateClass">
+		update class set
+		CN=#{cn},
+		Teacher=#{teacher}
+		where
+		CNo=#{cno};
+	</update>
+	
+	<delete id="deleteClass">
+		delete from class where CNo=#{cno};
+	</delete>
+
+
+</mapper>
