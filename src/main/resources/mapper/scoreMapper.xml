@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.stu.dao.ScoreDao">
+	<resultMap id="ScoreResultMap" type="com.stu.pojo.ScorePojo">
+
+		<result column="SNo" property="sno"/>
+		
+        <result column="CNo" property="cno"/>
+
+        <result column="CN" property="cn"/>
+
+        <result column="Score" property="score"/>
+
+    </resultMap>
+	
+	<select id="selectAllScore" resultMap="ScoreResultMap">
+		select * from score;
+	</select>
+	
+	<insert id="insertScore">
+		insert into score value(#{sno},#{cno},#{cn},#{score});
+	</insert>
+	
+	<update id="updateScore">
+		update score set
+		Score=#{score}
+		where
+		CNo=#{cno} and Sno=#{sno};
+	</update>
+	
+	<delete id="deleteScore">
+		delete from score where CNo=#{cno} and Sno=#{sno};
+	</delete>
+</mapper>

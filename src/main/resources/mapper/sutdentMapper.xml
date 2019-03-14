@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.stu.dao.StudentDao">
+
+<!--设置domain类和数据库中表的字段一一对应，注意数据库字段和domain类中的字段名称不致，此处一定要！-->
+
+    <resultMap id="StuResultMap" type="com.stu.pojo.Student">
+
+        <result column="Sno" property="sno"/>
+
+        <result column="SN" property="sn"/>
+
+        <result column="Sex" property="sex"/>
+        
+        <result column="Major" property="major"/>
+        
+        <result column="Grade" property="grade"/>
+
+    </resultMap>
+
+    <!-- 查询单条记录 -->
+
+    <select id="selectStudentById" resultMap="StuResultMap">
+
+        SELECT * FROM student WHERE SNo = #{sno}
+
+    </select>
+    
+    <select id="selectStudentAll" resultMap="StuResultMap">
+    
+    	select * from student
+    	
+    </select>
+    
+    <update id="updateStudent">
+    	update student set 
+    	SN=#{sn},
+    	Sex=#{sex},
+    	Major=#{major},
+    	Grade=#{grade} 
+    	where 
+    	SNo=#{sno};
+    </update>
+
+	<delete id="deleteStudent">
+		delete from student where SNo=#{sno};
+	</delete>
+
+	<insert id="insertStudent">
+		insert into student value(#{sno},#{sn},#{sex},#{major},#{grade});
+	</insert>
+
+</mapper>
