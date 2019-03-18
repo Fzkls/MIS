@@ -73,7 +73,8 @@
 			</div>
 			<div class="meun-title">信息管理</div>
 			<div class="meun-item meun-item-active" href="#studentModel"
-				aria-controls="aria-controls" role="tab" data-toggle="tab" id="stutitle">
+				aria-controls="aria-controls" role="tab" data-toggle="tab"
+				id="stutitle">
 				<img src="${basepath}images/icon_source.png">学生信息
 			</div>
 			<div class="meun-item" href="#scoreModel" aria-controls="scoreModel"
@@ -92,7 +93,7 @@
 			</a>
 			<!-- Tab panes -->
 			<div class="tab-content">
-			
+
 				<!-- 学生管理模块 -->
 				<div role="tabpanel" class="tab-pane active" id="studentModel">
 					<div class="check-div form-inline">
@@ -267,7 +268,7 @@
 					<!-- /.modal -->
 				</div>
 				<!-- 学生管理END -->
-				
+
 				<!--成绩管理模块-->
 				<div role="tabpanel" class="tab-pane" id="scoreModel">
 					<div class="check-div form-inline">
@@ -461,7 +462,7 @@
 								<div class="modal-body">
 									<div class="container-fluid">
 										<form class="form-horizontal">
-										<div class="form-group">
+											<div class="form-group">
 												<label class="col-xs-3 control-label">课程编号：</label>
 												<div class="col-xs-8">
 													<input type="text" class="form-control input-sm duiqi"
@@ -592,76 +593,83 @@
 	<!-- this page specific inline scripts -->
 
 	<script>
-		
 		//动态添加学生表信息
 		var list = JSON.parse('${list}');
 		var stu = list[0];
 		var cl = list[1];
 		var score = list[2];
 		var html;
-		var cname = 'sc';//button id前缀
-		var dname = 'sd';
-		$
-				.each(
-						stu,
-						function(i, s) {
+		$().ready(stuinfo());
+		$().ready(classinfo());
+		$().ready(scoreinfo());
+		function stuinfo() {
+			var cname = 'sc';//button id前缀
+			var dname = 'sd';
+			$
+					.each(
+							stu,
+							function(i, s) {
 
-							html = '<div class="row"><div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">'
-									+ s.sno
-									+ '</div><div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">'
-									+ s.sn
-									+ '</div><div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">'
-									+ s.sex
-									+ '</div><div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">'
-									+ s.major
-									+ '</div><div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">'
-									+ s.grade
-									+ '</div><div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"><button class="btn btn-success btn-xs" id="'+cname+i+'" data-toggle="modal" data-target="#changeStu">修改</button><button class="btn btn-danger btn-xs" data-toggle="modal" id="'+dname+i+'" data-target="#deleteStu">删除</button></div></div>';
+								html = '<div class="row"><div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">'
+										+ s.sno
+										+ '</div><div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">'
+										+ s.sn
+										+ '</div><div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">'
+										+ s.sex
+										+ '</div><div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">'
+										+ s.major
+										+ '</div><div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">'
+										+ s.grade
+										+ '</div><div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"><button class="btn btn-success btn-xs" id="'+cname+i+'" data-toggle="modal" data-target="#changeStu">修改</button><button class="btn btn-danger btn-xs" data-toggle="modal" id="'+dname+i+'" data-target="#deleteStu">删除</button></div></div>';
 
-							$("#studentbody").append(html);
+								$("#studentbody").append(html);
 
-						});
-		//动态添加课程表
-		var ccname = 'cc';//button id前缀
-		var cdname = 'cd';
+							});
+		}
+		function classinfo() {
+			//动态添加课程表
+			var ccname = 'cc';//button id前缀
+			var cdname = 'cd';
 
-		$
-				.each(
-						cl,
-						function(i, c) {
+			$
+					.each(
+							cl,
+							function(i, c) {
 
-							html = '<div class="row"><div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">'
-									+ c.cno
-									+ '</div><div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">'
-									+ c.cn
-									+ '</div><div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">'
-									+ c.teacher
-									+ '</div><div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"><button class="btn btn-success btn-xs" id="'+ccname+i+'" data-toggle="modal" data-target="#changeClass">修改</button><button class="btn btn-danger btn-xs" data-toggle="modal" id="'+cdname+i+'" data-target="#deleteClass">删除</button></div></div>';
+								html = '<div class="row"><div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">'
+										+ c.cno
+										+ '</div><div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">'
+										+ c.cn
+										+ '</div><div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">'
+										+ c.teacher
+										+ '</div><div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"><button class="btn btn-success btn-xs" id="'+ccname+i+'" data-toggle="modal" data-target="#changeClass">修改</button><button class="btn btn-danger btn-xs" data-toggle="modal" id="'+cdname+i+'" data-target="#deleteClass">删除</button></div></div>';
 
-							$("#classbody").append(html);
+								$("#classbody").append(html);
 
-						});
-		//动态添加成绩表
-		var dcname = 'dc';//button id 前缀
-		var ddname = 'dd';
-		$
-				.each(
-						score,
-						function(i, ss) {
+							});
+		};
+		function scoreinfo() {
+			//动态添加成绩表
+			var dcname = 'dc';//button id 前缀
+			var ddname = 'dd';
+			$
+					.each(
+							score,
+							function(i, ss) {
 
-							html = '<div class="row"><div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">'
-									+ ss.sno
-									+ '</div><div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">'
-									+ ss.cno
-									+ '</div><div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">'
-									+ ss.cn
-									+ '</div><div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">'
-									+ ss.score
-									+ '</div><div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"><button class="btn btn-success btn-xs" id="'+dcname+i+'" data-toggle="modal" data-target="#changeScore">修改</button><button class="btn btn-danger btn-xs" data-toggle="modal" id="'+ddname+i+'" data-target="#deleteScore">删除</button></div></div>';
-							$("#scorebody").append(html);
+								html = '<div class="row"><div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">'
+										+ ss.sno
+										+ '</div><div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">'
+										+ ss.cno
+										+ '</div><div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">'
+										+ ss.cn
+										+ '</div><div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">'
+										+ ss.score
+										+ '</div><div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"><button class="btn btn-success btn-xs" id="'+dcname+i+'" data-toggle="modal" data-target="#changeScore">修改</button><button class="btn btn-danger btn-xs" data-toggle="modal" id="'+ddname+i+'" data-target="#deleteScore">删除</button></div></div>';
+								$("#scorebody").append(html);
 
-						});
-		
+							});
+		};
 		//添加成绩ajax
 		$("#addscore").click(function() {
 			var adds = {
@@ -727,7 +735,7 @@
 				data : cstu,
 				success : function(data) {
 					alert('修改成功');
-					$("#changeStu").modal('hide');
+					$("#changeStu").modal('hide'); 
 					location.reload(true);
 				},
 				error : function(e) {
@@ -761,7 +769,7 @@
 				}
 			});
 		});
-		
+
 		//动态获取所有表的修改删除button id
 		var onestudent;
 		var onescore;
@@ -796,15 +804,15 @@
 						}
 					});
 				});
-			}else if(this.id.substring(0, 2) == 'dc'){
+			} else if (this.id.substring(0, 2) == 'dc') {
 				onescore = score[this.id.substring(2, 3)];
 				$("#updatessno").val(onescore.sno);
 				$("#updatescno").val(onescore.cno);
 				$("#updatescn").val(onescore.cn);
 				$("#updatesscore").val(onescore.score);
-			}else if(this.id.substring(0, 2) == 'dd'){
+			} else if (this.id.substring(0, 2) == 'dd') {
 				onescore = score[this.id.substring(2, 3)];
-				var dscore=JSON.stringify(onescore);
+				var dscore = JSON.stringify(onescore);
 				$("#deletescore").click(function() {
 					$.ajax({
 						url : "/mfc/score/delete",
@@ -821,33 +829,33 @@
 						}
 					});
 				});
-			}else if(this.id.substring(0, 2) == 'cc'){
-				oneclass= cl[this.id.substring(2, 3)];
+			} else if (this.id.substring(0, 2) == 'cc') {
+				oneclass = cl[this.id.substring(2, 3)];
 				$("#changeccno").val(oneclass.cno);
 				$("#changeccn").val(oneclass.cn);
 				$("#changecteacher").val(oneclass.teacher);
-			}else if(this.id.substring(0, 2) == 'cd'){
+			} else if (this.id.substring(0, 2) == 'cd') {
 				var cno = {
-						"cno" : cl[this.id.substring(2, 3)].cno,
-					};
-					//console.log(sno);
-					var dcno = JSON.stringify(cno);
-					$("#deleteclass").click(function() {
-						$.ajax({
-							url : "/mfc/class/delete",
-							type : "post",
-							contentType : "application/json;charset=UTF-8",
-							data : dcno,
-							success : function(data) {
-								alert('删除成功');
-								$("#deleteClass").modal('hide');
-								location.reload(true);
-							},
-							error : function(e) {
-								alert('删除失败');
-							}
-						});
+					"cno" : cl[this.id.substring(2, 3)].cno,
+				};
+				//console.log(sno);
+				var dcno = JSON.stringify(cno);
+				$("#deleteclass").click(function() {
+					$.ajax({
+						url : "/mfc/class/delete",
+						type : "post",
+						contentType : "application/json;charset=UTF-8",
+						data : dcno,
+						success : function(data) {
+							alert('删除成功');
+							$("#deleteClass").modal('hide');
+							location.reload(true);
+						},
+						error : function(e) {
+							alert('删除失败');
+						}
 					});
+				});
 			}
 		});
 
@@ -878,9 +886,9 @@
 		//修改课表ajax
 		$("#updateclass").click(function() {
 			var updatec = {
-					"cno" : $("#changeccno").val(),
-					"cn" : $("#changeccn").val(),
-					"teacher" : $("#changecteacher").val(),
+				"cno" : $("#changeccno").val(),
+				"cn" : $("#changeccn").val(),
+				"teacher" : $("#changecteacher").val(),
 			};
 			var ccl = JSON.stringify(updatec);
 			console.log(ccl);
@@ -899,8 +907,7 @@
 				}
 			});
 		});
-		
-		
+
 		function huadong(my, unit, def, max) {
 			$(my).noUiSlider(
 					{
